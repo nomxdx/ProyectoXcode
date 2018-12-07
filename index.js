@@ -14,6 +14,7 @@ var credenciales ={
 
  // exposicion de carpetas
 app.use(express.static("public"));
+app.use(express.static("public-usuario"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
