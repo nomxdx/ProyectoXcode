@@ -1,14 +1,15 @@
 var express = require("express");
-var mysql = require("mysql");
+var session = require("express-session");
 var bodyParser = require("body-parser");
+var mysql = require("mysql");
 var app = express();
 
-var credenciales = {
-    host:"localhost",
-    user:"root",
-    password:"",
-    port:"3306",
-    database: "db_codex"
+var credenciales ={
+  user:"root",
+  password:"",
+  database:"db_codex",
+  host:"localhost",
+  port:"3306"  
 };
 
  // exposicion de carpetas
@@ -66,5 +67,12 @@ app.post("/login",function(req, res){
     )
 });
 
+// Destruir session
+app.get("/cerrar-sesion",function(req,res){
+    req.session.destroy();
+    res.send("Sesion eliminada");
+    res.end();
+});
 
-app.listen(8111, function(){ console.log("Servidor iniciado");});
+
+app.listen(4000, function(){ console.log("Servidor iniciado");});
