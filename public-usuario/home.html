@@ -108,15 +108,17 @@
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="row">
-                        <div class="col-lg-2 col-md-6 col-12" align="center" >
-                            <img src="images/carpeta.png" alt="" width="100px" height="100px">
+                        <div  class="col-lg-2 col-md-6 col-12" align="center" >
+                            <img id="carpeta" src="images/carpeta.png" alt="" width="100px" height="100px" onclick='alertas();' onmouseenter="MouseIn();" onmouseout="MouseOut();">
                             <p align="center">Carpeta 1</p>
                         </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <img src="images/carpeta.jpg" alt="" width="100px" height="100px">
+                        <div class="col-lg-2 col-md-6 col-12" align="center">
+                            <img id="proyecto" src="images/proyecto.png" alt="" width="100px" height="100px" onclick='alertas();' onmouseenter="MouseIn1();" onmouseout="MouseOut1();">
+                            <p align="center">Proyecto 2</p>
                         </div>
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <img src="images/carpeta.jpg" alt="" width="100px" height="100px">
+                        <div class="col-lg-2 col-md-6 col-12" align="center">
+                            <img src="images/carpeta.png" alt="" width="100px" height="100px" >
+                            <p align="center">Carpeta 3</p>
                         </div>
                     
                     </div>
@@ -141,6 +143,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <!-- Controlador del app -->
+    <script src="js/controlador-usuario.js"></script>
 
 </body>
 
