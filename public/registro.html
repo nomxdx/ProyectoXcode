@@ -72,49 +72,67 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 animate-box">
-					<h3>Mantente en Contacto</h3>
+					<h3>Datos de registro</h3>
 					<form action="#">
 						<div class="row form-group">
 							<div class="col-md-6">
 								<label for="fname">Nombre</label>
-								<input type="text" id="fname" class="form-control" placeholder="Primer Nombre">
+								<input type="text" id="fname" class="form-control" placeholder="Primer Nombre" required="">
 							</div>
 							<div class="col-md-6">
 								<label for="lname">Apellido</label>
-								<input type="text" id="lname" class="form-control" placeholder="Primer Apellido">
+								<input type="text" id="lname" class="form-control" placeholder="Primer Apellido" required="">
 							</div>
 						</div>
 
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="email">Correo</label>
-								<input type="text" id="email" class="form-control" placeholder="usuario@correo.com">
+								<input type="email" id="email" class="form-control" placeholder="usuario@correo.com" required="">
 							</div>
 						</div>
 
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="subject">Contraseña</label>
-								<input type="password" id="contrasena" class="form-control" placeholder="Tu contraseña aqui.">
+								<input type="password" id="contrasena" class="form-control" placeholder="Tu contraseña aqui." required="">
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<input type="password" id="contrasena" class="form-control" placeholder="Confirma tu contraseña">
+								<input type="password" id="contrasena2" class="form-control" placeholder="Confirma tu contraseña" required="">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label for="email">Plan de uso</label>
+								<select id="plan" class="form-control" required="" >
+									<option value="0">Seleccione plan</option>
+								</select>
+								
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<label for="email">Telefono</label>
+								<input type="text" id="telefono" class="form-control" placeholder="	Ej: 99124563" required="false">
 							</div>
 						</div>
 
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="message">Contraseña</label>
-								<textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Contraseña"></textarea>
-							</div>
-						</div>
 						<div class="form-group">
-							<input type="submit" value="Enviar" class="btn btn-primary">
+							<input type="submit" value="Registrarse" class="btn btn-primary">
 						</div>
 
 					</form>		
+				</div>
+				<div class="col-md-5 col-md-push-1 animate-box">
+					<div class="fh5co-contact-info">
+						<ul>
+							<li><a href="login.html">¿Ya tienes una cuenta?</a></li>
+							
+						</ul>
+					</div>
+
 				</div>
 			</div>
 			
