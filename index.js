@@ -1,3 +1,4 @@
+// Sever CodeX
 var express = require("express");
 var session = require("express-session");
 var bodyParser = require("body-parser");
@@ -19,7 +20,7 @@ app.use(express.static("public-usuario"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.use(session({secret:"ASDFE$%#%",resave:true, saveUninitialized:true}));
+app.use(session({secret:"K$%JFDFE#%", resave:true, saveUninitialized:true}));
 
 //Verificar si existe una variable de sesion para poner publica la carpeta public admin
 var publicAdmin = express.static("public-admin");

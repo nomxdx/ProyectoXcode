@@ -24,10 +24,6 @@
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
 
 	</head>
 	<body>
@@ -45,8 +41,8 @@
 					<br>
 					<ul>
 						<li><a href="index.html">Inicio</a></li>
-						<li class="active"><a href="contact.html">Contacto</a></li>
-						<li><a href="registro.html">Registrarse</a></li>
+						<li><a href="contact.html">Contacto</a></li>
+						<li class="active"><a href="registro.html">Registrarse</a></li>
 						<li><a href="login.html">Log In</a></li>
 					</ul>
 				</div>
@@ -55,14 +51,14 @@
 		</div>
 	</nav>
 
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/banner.png);">
+	<header id="fh5co-header" class="fh5co-cover" style="height: 150px;">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 col-md-offset-0 text-center">
 					<div class="display-t">
 						<div class="display-tc animate-box" data-animate-effect="fadeInUp">
-							<h1 class="mb30">Contáctanos</h1>
+							<h1 class="mb30">Datos de registro</h1>
 						</div>
 					</div>
 				</div>
@@ -75,30 +71,17 @@
 	<div id="fh5co-contact">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-5 col-md-push-1 animate-box">
-					
-					<div class="fh5co-contact-info">
-						<h3>Información de Contacto</h3>
-						<ul>
-							<li class="address">Direccion</li>
-							<li class="phone"><a href="tel://1234567920">+504 9913-3646</a></li>
-							<li class="email"><a href="#">nomxdx_94@yahoo.com</a></li>
-							<li class="url"><a href="#">Sitio Web</a></li>
-						</ul>
-					</div>
-
-				</div>
 				<div class="col-md-6 animate-box">
 					<h3>Mantente en Contacto</h3>
 					<form action="#">
 						<div class="row form-group">
 							<div class="col-md-6">
 								<label for="fname">Nombre</label>
-								<input type="text" id="fname" class="form-control" placeholder="Ej. Juan">
+								<input type="text" id="fname" class="form-control" placeholder="Primer Nombre">
 							</div>
 							<div class="col-md-6">
 								<label for="lname">Apellido</label>
-								<input type="text" id="lname" class="form-control" placeholder="Ej. Lopez">
+								<input type="text" id="lname" class="form-control" placeholder="Primer Apellido">
 							</div>
 						</div>
 
@@ -111,15 +94,20 @@
 
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="subject">Asunto</label>
-								<input type="text" id="subject" class="form-control" placeholder="Asunto del Mensaje">
+								<label for="subject">Contraseña</label>
+								<input type="password" id="contrasena" class="form-control" placeholder="Tu contraseña aqui.">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<input type="password" id="contrasena" class="form-control" placeholder="Confirma tu contraseña">
 							</div>
 						</div>
 
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="message">Mensaje</label>
-								<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Dinos algo."></textarea>
+								<label for="message">Contraseña</label>
+								<textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Contraseña"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
