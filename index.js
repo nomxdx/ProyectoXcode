@@ -15,7 +15,7 @@ var credenciales ={
 
  // exposicion de carpetas
 app.use(express.static("public"));
-// app.use(express.static("public-usuario"));
+app.use(express.static("public-usuario"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -169,6 +169,75 @@ app.post("/registrar",function(req, res){
         }
     )
 
+    
+});
+
+//obtener las carpetas creadas
+app.post("/obtener-carpetas",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_carpeta, nombre_carpeta, tbl_carpetas_codigo_carpeta FROM tbl_carpetas 
+			WHERE tbl_carpetas_codigo_carpeta = 2`,
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    )
+    
+});
+
+
+//Crea una carpeta
+app.post("/crear-carpeta",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `INSERT INTO tbl_carpetas(codigo_carpeta, nombre_carpeta, descripcion, fecha_creacion, tbl_carpetas_codigo_carpeta) 
+			VALUES (null,?,?,sysdate(),?)`,
+		 [
+		 req.body.nuevaCarpeta,
+		 req.body.descripcionCarpeta,
+		 req.body.codPadre
+		 ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+            	res.send(data);
+            	res.end();
+            }
+        }
+    )
+
+    
+});
+
+//ver Carpetas
+
+app.post("/ver-carpetas",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_carpeta, nombre_carpeta, tbl_carpetas_codigo_carpeta FROM tbl_carpetas 
+			WHERE tbl_carpetas_codigo_carpeta = ?`, 
+			[
+			req.body.idCarpeta //codigo qde la carpeta seleecionado que ahora es padre
+			],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+                console.log(req.body.idCarpeta);
+            }
+        }
+    )
     
 });
 

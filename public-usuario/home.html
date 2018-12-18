@@ -105,30 +105,18 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="page-header">Carpetas
-                                <button class="btn btn-success fa fa-folder-open" style="margin-left: 50%"> +</button>
-                                <button class="btn btn-success fa fa-file-code-o"> +</button>
+                                <button data-toggle="modal" data-target="#modalCrearCarpeta" class="btn btn-success fa fa-folder-open" style="margin-left: 50%"> +</button>
+                                <button class="btn btn-primary fa fa-file-code-o"> +</button>
 
                         </h2>
                     </div>
-                   <!--  <div class="col-lg-6">
-                        <br><br> 
-                        <button class="btn btn-success">algo por aqudddddddi</button>
-                        <button class="btn btn-success">algo por aqui</button>                    
-                    </div> -->
                     <!-- /.col-lg-12 -->
-                    <div class="row">
-                        <div  class="col-lg-2 col-md-6 col-12" align="center" >
+                    <div id="carpeta-contenedora" class="row">
+                        <!-- <div  class="col-lg-2 col-md-6 col-12" align="center" >
                             <img id="carpeta" src="images/carpeta.png" alt="" width="100px" height="100px" onclick='alertas();' onmouseenter="MouseIn();" onmouseout="MouseOut();">
                             <p align="center">Carpeta 1</p>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12" align="center">
-                            <img id="proyecto" src="images/proyecto.png" alt="" width="100px" height="100px" onclick='alertas();' onmouseenter="MouseIn1();" onmouseout="MouseOut1();">
-                            <p align="center">Proyecto 2</p>
-                        </div>
-                        <div class="col-lg-2 col-md-6 col-12" align="center">
-                            <img src="images/carpeta.png" alt="" width="100px" height="100px" >
-                            <p align="center">Carpeta 3</p>
-                        </div>
+                        </div> -->
+                        
                     
                     </div>
                 </div>
@@ -140,6 +128,49 @@
 
     </div>
     <!-- /#wrapper -->
+
+    <!-- Modal de creacion de carpeta-->
+    <div class="modal fade" id="modalCrearCarpeta" tabindex="-1" role="dialog" aria-labelledby="modalCrearCarpetaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="modalCrearCarpetaLabel">Nueva Carpeta</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formulario-carpeta" >
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                                <br>
+                                <label > Nombre de la carpeta</label>
+                                <input name="nuevaCarpeta" id="nuevaCarpeta" type="text" class="form-control" placeholder="Introduzca el nombre">
+                                <br><br>
+                            </div>
+                            <div class="col-lg-6 col-12" align="center">
+                                <br>
+                                <div id="campoVacio">
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-12 col-12">
+                                <label > Descripcion (Opcional)</label>
+                                <textarea name="descripcionCarpeta" id="descripcionCarpeta" cols="30" rows="5" class="form-control" placeholder="Descripción"></textarea>
+                                <br>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="validarCarpeta();">Crear</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>

@@ -25,7 +25,6 @@ function validar(){
 	document.getElementById("datos-faltantes").innerHTML="";
 
 	if (document.getElementById("primer_nombre").value==""){
-		console.log("entre aqui man");
 		$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 El campo <strong>Nombre</strong> esta vacío.
