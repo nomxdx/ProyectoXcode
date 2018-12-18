@@ -73,40 +73,40 @@
 			<div class="row">
 				<div class="col-md-6 animate-box">
 					<h3>Datos de registro</h3>
-					<form action="#">
+					<form>
 						<div class="row form-group">
 							<div class="col-md-6">
 								<label for="fname">Nombre</label>
-								<input type="text" id="fname" class="form-control" placeholder="Primer Nombre" required="">
+								<input type="text" id="primer_nombre" class="form-control" placeholder="Primer Nombre" required="">
 							</div>
 							<div class="col-md-6">
 								<label for="lname">Apellido</label>
-								<input type="text" id="lname" class="form-control" placeholder="Primer Apellido" required="">
+								<input type="text" id="apellido" class="form-control" placeholder="Primer Apellido" required="">
 							</div>
 						</div>
 
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="email">Correo</label>
-								<input type="email" id="email" class="form-control" placeholder="usuario@correo.com" required="">
+								<label >Correo</label>
+								<input type="email" id="e_mail" class="form-control" placeholder="usuario@correo.com" required="">
 							</div>
 						</div>
 
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="subject">Contraseña</label>
-								<input type="password" id="contrasena" class="form-control" placeholder="Tu contraseña aqui." required="">
+								<label >Contraseña</label>
+								<input type="password" id="contrasena_registro" class="form-control" placeholder="Tu contraseña aqui." required="">
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<input type="password" id="contrasena2" class="form-control" placeholder="Confirma tu contraseña" required="">
+								<input type="password" id="contrasena_registro2" class="form-control" placeholder="Confirma tu contraseña" required="">
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="email">Plan de uso</label>
-								<select id="plan" class="form-control" required="" >
+								<label >Plan de uso</label>
+								<select id="plan" class="form-control" >
 									<option value="0">Seleccione plan</option>
 								</select>
 								
@@ -114,13 +114,13 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="email">Telefono</label>
-								<input type="text" id="telefono" class="form-control" placeholder="	Ej: 99124563" required="false">
+								<label >Telefono</label>
+								<input type="text" id="telefono" class="form-control" placeholder="Ej: 99124563" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<input type="submit" value="Registrarse" class="btn btn-primary">
+							<input id="regisButton" type="button" class="btn btn-primary" value="Registrarse">
 						</div>
 
 					</form>		
@@ -131,6 +131,9 @@
 							<li><a href="login.html">¿Ya tienes una cuenta?</a></li>
 							
 						</ul>
+					</div>
+					<div id="datos-faltantes">
+						
 					</div>
 
 				</div>
@@ -182,6 +185,7 @@
 	<script src="js/magnific-popup-options.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script src="js/controlador-registro.js"></script>
 
 	</body>
 </html>

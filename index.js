@@ -30,9 +30,9 @@ app.use(
         if (req.session.correoUsuario){
             //Significa que el usuario si esta logueado
             if (req.session.codigoTipoUsuario == 1)
-                publicUsuario(req,res,next);
-            else if (req.session.codigoTipoUsuario == 2)
                 publicAdmin(req,res,next);
+            else if (req.session.codigoTipoUsuario == 2)
+                publicUsuario(req,res,next);
         }
         else
             return next();
@@ -70,10 +70,28 @@ app.post("/login",function(req, res){
     )
 });
 
+//registrar un usuario
+app.post("/obtener-plan",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_plan, nombre_plan
+		 FROM tbl_planes`,
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    )
+    
+});
+
 // Destruir session
-app.get("/cerrar-sesion",function(req,res){
+app.get("/logout",function(req,res){
     req.session.destroy();
-    res.send("Sesion eliminada");
     res.end();
 });
 
