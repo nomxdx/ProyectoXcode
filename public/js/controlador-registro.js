@@ -22,21 +22,55 @@ $(document).ready(function(){
 
 
 function validar(){
+	document.getElementById("datos-faltantes").innerHTML="";
 
 	if (document.getElementById("primer_nombre").value==""){
 		console.log("entre aqui man");
 		$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                El campo <strong>Nombre</strong> esta vacio.
-                            </div>`);
-		if (document.getElementById("apellido").value==""){
+                                El campo <strong>Nombre</strong> esta vacío.
+                            </div>`);}
+	else{
+		if (document.getElementById("apellido").value=""){
 			$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                El campo <strong>Apellido</strong> esta vacio.
-                            </div>`);
-		}
-		}
+	                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                               El campo <strong>Apellido</strong> esta vacío.
+	                           </div>`);}
 		else{
-			//statements de que todo es correcto
+			if (document.getElementById("e_mail").value==""){
+			$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+	                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                               El campo <strong>Correo</strong> esta vacío o es incorrecto.
+	                           </div>`);}
+			else{
+				if (document.getElementById("contrasena_registro").value != document.getElementById("contrasena_registro2").value){
+					$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+			                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			                               El campo <strong>Contraseñas</strong> no coinciden.
+			                           </div>`);}
+				else{
+					if (document.getElementById("contrasena_registro").value == ""){
+						$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+				                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				                               El campo <strong>Contraseña</strong> esta vacío.
+				                           </div>`);}
+					else{
+						if (document.getElementById("plan").value == 0){
+							$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+					                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					                               No ha seleccionado ningun <strong>Plan</strong> de almacenamiento.
+					                           </div>`);}
+						else{
+							$.ajax({
+								
+							});
+						}
+
+					}
+
+				}
+			}
 		}
+			
 	}
+}
