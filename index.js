@@ -154,5 +154,10 @@ app.get("/logout",function(req,res){
     res.end();
 });
 
+app.use(function(req, res, next) {
+        /*res.status(404).render('public/404.html');*/
+        res.status(400).send('Pagina no encontrada... verifica la ruta a la qe estas accediendo');
+});
+
 
 app.listen(4000, function(){ console.log("Servidor iniciado");});
