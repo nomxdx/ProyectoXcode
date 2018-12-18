@@ -1,4 +1,14 @@
-
+$(document).ready(function(){
+	$.ajax({
+		url:"/obtener-usuario",
+		method:"POST",
+		datatype:"JSON",
+		success:function(respuesta){
+			console.log(respuesta);
+			$("#nombre-usuario").append(`${respuesta[0].nombre_usuario}`);
+		}
+	});
+});
 
 function MouseIn(){
 	document.getElementById("carpeta").style.borderRadius = "100";

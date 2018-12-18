@@ -89,6 +89,30 @@ app.post("/obtener-plan",function(req, res){
     
 });
 
+//obtener nombre de usuario
+app.post("/obtener-usuario",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT concat(B.nombre, concat(" ", B.apellido)) as nombre_usuario 
+			FROM tbl_usuarios A
+			inner JOIN tbl_personas B
+			ON B.codigo_persona = A.codigo_persona
+			WHERE A.codigo_usuario = ?`, 
+			[
+			req.session.codigoUsuario
+			],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    )
+    
+});
 
 
 //Registra a un usuario
@@ -155,7 +179,6 @@ app.get("/logout",function(req,res){
 });
 
 app.use(function(req, res, next) {
-        /*res.status(404).render('public/404.html');*/
         res.status(400).send('Pagina no encontrada... verifica la ruta a la qe estas accediendo');
 });
 
