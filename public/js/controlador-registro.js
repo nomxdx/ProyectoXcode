@@ -29,6 +29,12 @@ function validar(){
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 El campo <strong>Nombre</strong> esta vacio.
                             </div>`);
+		if (document.getElementById("apellido").value==""){
+			$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                El campo <strong>Apellido</strong> esta vacio.
+                            </div>`);
+		}
 		}
 		else{
 			//statements de que todo es correcto
