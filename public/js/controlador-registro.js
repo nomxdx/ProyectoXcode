@@ -31,7 +31,7 @@ function validar(){
                                 El campo <strong>Nombre</strong> esta vacío.
                             </div>`);}
 	else{
-		if (document.getElementById("apellido").value=""){
+		if (document.getElementById("apellidos").value==""){
 			$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
 	                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	                               El campo <strong>Apellido</strong> esta vacío.
@@ -61,9 +61,34 @@ function validar(){
 					                               No ha seleccionado ningun <strong>Plan</strong> de almacenamiento.
 					                           </div>`);}
 						else{
+							console.log($("#formulario_registrar").serialize());
 							$.ajax({
-								
-							});
+
+							   url:"/registrar",
+						       method:"POST",
+						       data:$("#formulario_registrar").serialize(),
+						       dataType:"JSON",
+						       success:function(res){
+						           console.log(res);
+						           if (res.affectedRows == 1){
+						               $("#datos-faltantes").append(`<div class="alert alert-success alert-dismissable" align="center">
+					                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					                              Usuario registrado exitosamente. n_n
+					                           </div>`);
+
+						           }
+						           else {
+						           	$("#datos-faltantes").append(`<div class="alert alert-danger alert-dismissable" align="center">
+					                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					                               No ha podido registrar el usuario, verifique que el numero de telefono sea Numerico.
+					                           </div>`);
+						           }
+
+						       },
+						       error:function(error){
+						           console.error(error);
+						       }
+						   });
 						}
 
 					}

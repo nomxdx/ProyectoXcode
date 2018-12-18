@@ -70,7 +70,7 @@ app.post("/login",function(req, res){
     )
 });
 
-//registrar un usuario
+//muestra los planes en combo box
 app.post("/obtener-plan",function(req, res){
 	var conexion = mysql.createConnection(credenciales);
     conexion.query(
@@ -86,6 +86,65 @@ app.post("/obtener-plan",function(req, res){
             }
         }
     )
+    
+});
+
+
+
+//Registra a un usuario
+app.post("/registrar",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `INSERT INTO tbl_personas(codigo_persona, nombre, apellido, telefono) 
+			VALUES (null,?,?,?)`,
+		 [
+		 req.body.primer_nombre,
+		 req.body.apellidos,
+		 req.body.telefono
+		 ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                //traigo id de persona para mandarlo a la segunda consulta
+                conexion.query(
+			        `SELECT MAX(codigo_persona) as codigo_persona FROM tbl_personas`,
+			        function(error2, data2, fields2){
+			            if (error){
+			                res.send(error);
+			                res.end();
+			            }else{
+			            	//inserto los demas datos de la consulta
+			            	conexion.query(
+						        `INSERT INTO tbl_usuarios(codigo_usuario, usuario, 
+						        contrasenia, correo, codigo_persona, codigo_plan, 
+						        codigo_tipo_usuario) VALUES (null,?,sha1(?),?,?,?,2)`,
+								 [
+								 req.body.primer_nombre,
+								 req.body.contrasena_registro,
+								 req.body.e_mail,
+								 data2[0].codigo_persona, //codigo persona de la base de datos
+								 req.body.plan
+								 ],
+						        function(error3, data3, fields3){
+						            if (error){
+						                res.send(error);
+						                res.end();
+						            }else{
+						                res.send(data3);
+						                res.end();
+						            }
+						        }
+						    )
+			            }
+			        }
+			    )
+
+            }
+        }
+    )
+
     
 });
 
