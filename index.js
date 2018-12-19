@@ -17,6 +17,7 @@ var credenciales ={
 app.use(express.static("public"));
 app.use(express.static("public-usuario"));
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -25,6 +26,7 @@ app.use(session({secret:"K$%JFDFRE#%", resave:true, saveUninitialized:true}));
 //Verificar si existe una variable de sesion para poner publica la carpeta public admin
 var publicAdmin = express.static("public-admin");
 var publicUsuario = express.static("public-usuario");
+
 app.use(
     function(req,res,next){
         if (req.session.correoUsuario){
@@ -177,7 +179,7 @@ app.post("/obtener-carpetas",function(req, res){
 	var conexion = mysql.createConnection(credenciales);
     conexion.query(
         `SELECT codigo_carpeta, nombre_carpeta, tbl_carpetas_codigo_carpeta FROM tbl_carpetas 
-			WHERE tbl_carpetas_codigo_carpeta = 2`,
+			WHERE tbl_carpetas_codigo_carpeta = 2 and codigo_usuario = ?`, [req.session.codigoUsuario],
         function(error, data, fields){
             if (error){
                 res.send(error);
@@ -196,12 +198,13 @@ app.post("/obtener-carpetas",function(req, res){
 app.post("/crear-carpeta",function(req, res){
 	var conexion = mysql.createConnection(credenciales);
     conexion.query(
-        `INSERT INTO tbl_carpetas(codigo_carpeta, nombre_carpeta, descripcion, fecha_creacion, tbl_carpetas_codigo_carpeta) 
-			VALUES (null,?,?,sysdate(),?)`,
+        `INSERT INTO tbl_carpetas(codigo_carpeta, nombre_carpeta, descripcion, fecha_creacion, tbl_carpetas_codigo_carpeta, codigo_usuario) 
+			VALUES (null,?,?,sysdate(),?,?)`,
 		 [
 		 req.body.nuevaCarpeta,
 		 req.body.descripcionCarpeta,
-		 req.body.codPadre
+		 req.body.codPadre,
+		 req.session.codigoUsuario
 		 ],
         function(error, data, fields){
             if (error){
@@ -219,13 +222,14 @@ app.post("/crear-carpeta",function(req, res){
 
 //ver Carpetas
 
-app.post("/ver-carpetas",function(req, res){
+app.post("/ver-archivo",function(req, res){
 	var conexion = mysql.createConnection(credenciales);
     conexion.query(
         `SELECT codigo_carpeta, nombre_carpeta, tbl_carpetas_codigo_carpeta FROM tbl_carpetas 
-			WHERE tbl_carpetas_codigo_carpeta = ?`, 
+			WHERE tbl_carpetas_codigo_carpeta = ? and codigo_usuario = ?`, 
 			[
-			req.body.idCarpeta //codigo qde la carpeta seleecionado que ahora es padre
+			req.body.idCarpeta, //codigo qde la carpeta seleecionado que ahora es padre
+			req.session.codigoUsuario
 			],
         function(error, data, fields){
             if (error){
@@ -234,7 +238,100 @@ app.post("/ver-carpetas",function(req, res){
             }else{
                 res.send(data);
                 res.end();
-                console.log(req.body.idCarpeta);
+            }
+        }
+    )
+    
+});
+
+/*//obtener las archivos
+app.post("/obtener-archivo",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_archivo, nombre_archivo, tamanio FROM tbl_archivos 
+			WHERE tamanio = 2 and codigo_usuario = ?`, [req.session.codigoUsuario],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    )
+    
+});
+
+
+//Crea una archivos
+
+app.post("/crear-archivo",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `INSERT INTO tbl_archivos(codigo_archivo, nombre_archivo, tipo_archivo, tamanio, fecha_creacion, codigo_usuario) 
+			VALUES (null,?,?,?,sysdate(),?)`,
+		 [
+		 req.body.nuevoArchivo,
+		 req.body.tipoArchivo,
+		 req.body.codPadre,
+		 req.session.codigoUsuario
+		 ],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+            	res.send(data);
+            	res.end();
+            }
+        }
+    )
+
+    
+});
+
+//ver archivos
+
+app.post("/ver-archivo",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT codigo_archivo, nombre_archivo, tamanio FROM tbl_archivos 
+			WHERE tamanio = ? and codigo_usuario = ?`, 
+			[
+			req.body.idCarpeta, //codigo qde la carpeta seleecionado que ahora es padre
+			req.session.codigoUsuario
+			],
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
+            }
+        }
+    )
+    
+});*/
+
+app.post("/obtener-miembros",function(req, res){
+	var conexion = mysql.createConnection(credenciales);
+    conexion.query(
+        `SELECT concat(B.nombre, concat(" ", B.apellido)) as nombre_usuario, A.correo as correo, 
+        A.usuario as usuario, b.telefono as telefono, c.nombre_plan as nombre_plan
+			FROM tbl_usuarios A
+			inner JOIN tbl_personas B
+			ON B.codigo_persona = A.codigo_persona
+            inner join tbl_planes C
+            on c.codigo_plan = a.codigo_plan`,
+        function(error, data, fields){
+            if (error){
+                res.send(error);
+                res.end();
+            }else{
+                res.send(data);
+                res.end();
             }
         }
     )
@@ -242,7 +339,7 @@ app.post("/ver-carpetas",function(req, res){
 });
 
 // Destruir session
-app.get("/logout",function(req,res){
+app.post("/logout",function(req,res){
     req.session.destroy();
     res.end();
 });
