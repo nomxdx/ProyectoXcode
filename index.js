@@ -221,7 +221,7 @@ app.post("/crear-carpeta",function(req, res){
 
 //ver Carpetas
 
-app.post("/ver-archivo",function(req, res){
+app.post("/ver-carpetas",function(req, res){
 	var conexion = mysql.createConnection(credenciales);
     conexion.query(
         `SELECT codigo_carpeta, nombre_carpeta, tbl_carpetas_codigo_carpeta FROM tbl_carpetas 

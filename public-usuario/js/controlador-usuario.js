@@ -10,6 +10,25 @@ $(document).ready(function(){
 		}
 	});
 
+	$.ajax({
+		url:"/obtener-miembros",
+		method:"POST",
+		datatype:"JSON",
+		success:function(respuesta){
+			console.log(respuesta);
+			for(var i=0; i<respuesta.length; i++){
+
+			$("#tblMiembros").append(`<tr class="gradeU">
+                                        <td>${respuesta[i].nombre_usuario}</td>
+                                        <td>${respuesta[i].correo}</td>
+                                        <td>${respuesta[i].usuario}</td>
+                                        <td class="center"><button class="btn btn-success">Agregar</button></td>
+                                    </tr>`);
+			}
+			
+		}
+	});
+
 	//muestra las carpetas creadas
 	mostrarCarpetas();
 	// mostrarArchivos();
@@ -192,35 +211,5 @@ function logout(){
 		}
 	});
 };
-
-$(document).ready(function(){
-
-	$.ajax({
-		url:"/obtener-miembros",
-		method:"POST",
-		datatype:"JSON",
-		success:function(respuesta){
-			console.log(respuesta);
-			for(var i=0; i<respuesta.length; i++){
-
-			$("#tblMiembros").append(`<tr class="gradeU">
-                                        <td>${respuesta[i].nombre_usuario}</td>
-                                        <td>${respuesta[i].correo}</td>
-                                        <td>${respuesta[i].usuario}</td>
-                                        <td class="center"><button class="btn btn-success">Agregar</button></td>
-                                    </tr>`);
-			}
-			$('#dataTables-example').DataTable({
-            responsive: true
-        });
-			
-		}
-	});
-
-
-
-	
-
-});
 
 
